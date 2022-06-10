@@ -1,6 +1,5 @@
 # Import random so that the random function can be used
 import random
-from random import randint
 
 
 # Intro to WarShips and enter players username
@@ -26,9 +25,10 @@ def build_board(dims):
 
 board = build_board(6)
 
+
 def print_board(board):
     '''
-    This function will get rid of the commas, quotations 
+    This function will get rid of the commas, quotations
     and brackets for the board.
     The * makes the list on one line
     '''
@@ -56,6 +56,7 @@ print_board(board)
 ship = build_ship(4)
 print(ship)
 
+
 def user_guess():
     # Subtract 1 to adjust for python 0-based indexing
     row = int(input('Row: ')) - 1
@@ -67,3 +68,23 @@ x = user_guess()
 print(x)
 
 
+def update_board(guess, board, ship, guesses):
+    if guess in guesses:
+        print('You have already guessed that coordinate. Try a dfferent one')
+        return board
+    guesses.append(guess)
+    if guess in ship:
+        print('Good Hit!')
+        # Update board with 'X' if hit
+        board[guess[0]][guess[1]] = 'X'
+        # Remove this value from ship coordinates to prevent mutiple hits on same ship cooridnate
+        ship.remove(guess)
+        return board
+    print('You missed!')
+    return board
+
+
+guesses = []
+our_guess = user_guess()
+board = update_board(our_guess, board, ship, guesses)
+print_board(board)
