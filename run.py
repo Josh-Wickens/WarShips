@@ -12,11 +12,12 @@ def welcome():
     print("\nBefore we get started, I need to know your name")
     username = input("\ninsert name: ")
     print(f"\nWelcome to WarShips {username}!\n")
-    print("\nSelect a row coordinate from 0-6 and column coordiante from 0-6")
-    print("\n if you hit a boat. It will be marked with an X.")
+    print("\nSelect a row coordinate from 0-6 and column coordinate from 0-6")
+    print("\nif you hit a boat. It will be marked with an X.")
     print("\nIf you miss it will be marked with #")
+    print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
     print("\nif you miss 5 times the game is over and you lose.")
-    print("If you sink the boat. Then you WIN!")
+    print("\nIf you sink both boats. Then you WIN!\n")
 
 
 def build_board(dims):
@@ -56,14 +57,21 @@ def build_ship(dims):
 
 def user_guess():
     """
-    Subtract 1 to adjust for python 0-based indexing
+    provides an input for user to select guess.
+    Will only allow an integer for an input
+    and only 1 character long
     """
-    row = int(input('\nRow: '))
-    col = int(input('Col: '))
-    return (row, col)
+    while True:
+        try:
+            row = int(input('\nROW: '))
+            col = int(input('COL: '))
+            return (row, col)
+        except ValueError:
+            print("Please choose a number between 0-6")
+            return None
 
 
-def update_board(guess, board, ship, guesses, incorrect):
+def update_board(guess, board, ship1, ship2, guesses, incorrect):
     """
     Function to check if the guess has already been guessed
     or if it is a hit or miss.
@@ -73,15 +81,23 @@ def update_board(guess, board, ship, guesses, incorrect):
         print('You have already guessed that coordinate. Try a dfferent one')
         return board
     guesses.append(guess)
-    if guess in ship:
+    if guess in ship1:
         print('\nGood Hit!\n')
         # Update board with 'X' if hit
         board[guess[0]][guess[1]] = 'X'
         # Remove this value from ship coordinates to prevent
         # mutiple hits on same ship cooridnate
-        ship.remove(guess)
+        ship1.remove(guess)
         return board
-    elif guess not in ship:
+    if guess in ship2:
+        print('\nGood Hit!\n')
+        # Update board with 'X' if hit
+        board[guess[0]][guess[1]] = 'X'
+        # Remove this value from ship coordinates to prevent
+        # mutiple hits on same ship cooridnate
+        ship2.remove(guess)
+        return board
+    if guess not in ship1 or ship2:
         board[guess[0]][guess[1]] = '#'
         print('\nYou missed! Please try again!')
         print(f"\n you have {5 - len(incorrect)} guesses left!\n")
@@ -97,16 +113,17 @@ def main():
     """
     welcome()
     board = build_board(6)
-    ship = build_ship(4)
+    ship1 = build_ship(4)
+    ship2 = build_ship(4)
     guesses = []
     incorrect = []
     print_board(board)
-    while len(ship) > 0 and len(incorrect) < 6:
-        board = update_board(user_guess(), board, ship, guesses, incorrect)
+    while len(ship1 + ship2) > 0 and len(incorrect) < 6:
+        board = update_board(user_guess(), board, ship1, ship2, guesses, incorrect)
         print_board(board)
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
-    if len(ship) == 0:
+    if len(ship1 + ship2) == 0:
         print('You sunk the Warship!')
     else:
         print("\n you have run out of guesses! You Lose!")
