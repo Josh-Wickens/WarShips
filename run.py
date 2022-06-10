@@ -1,4 +1,5 @@
 # Import random so that the random function can be used
+import random
 from random import randint
 
 
@@ -43,8 +44,16 @@ def build_ship(dims):
         col = random.randint(0, dims - len_ship)
         col_ship = list(range(col, col + len_ship))
         coords = tuple(zip(row_ship, col_ship))
-    
+    else:
+        col_ship = [random.randint(0, dims - 1)] * len_ship
+        row = random.randint(0, dims - len_ship)
+        row_ship = list(range(row, row + len_ship))
+        coords = tuple(zip(row_ship, col_ship))
+    return list(coords)
+
 
 print_board(board)
+ship = build_ship(4)
+print(ship)
 
 
