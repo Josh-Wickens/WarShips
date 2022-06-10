@@ -61,14 +61,17 @@ def user_guess():
     Will only allow an integer for an input
     and only 1 character long
     """
-    while True:
-        try:
-            row = int(input('\nROW: '))
-            col = int(input('COL: '))
+    try:
+        row = int(input('\nROW: '))
+        col = int(input('COL: '))
+        if row or col <= 6:
             return (row, col)
-        except ValueError:
-            print("Please choose a number between 0-6")
+        else:
             return None
+            raise ValueError
+    except ValueError:
+        print("Please choose a number between 0-6")
+        user_guess()
 
 
 def update_board(guess, board, ship1, ship2, guesses, incorrect):
