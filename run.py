@@ -56,4 +56,14 @@ print_board(board)
 ship = build_ship(4)
 print(ship)
 
+def user_guess():
+    # Subtract 1 to adjust for python 0-based indexing
+    row = int(input('Row: ')) - 1
+    col = int(input('Col: ')) - 1
+    return (row, col)
+
+
+x = user_guess()
+print(x)
+
 
