@@ -1,7 +1,6 @@
 # Import random so that the random function can be used
 import random
 
-
 # Intro to WarShips and enter players username
 
 
@@ -14,16 +13,9 @@ def welcome():
     print(f"\nWelcome to WarShips {username}!\n")
 
 
-# Calls the welcome message function
-welcome()
-
-
 def build_board(dims):
     # Build board for the game using 0 for placements
     return [['O' for count in range(dims)] for count in range(dims)]
-
-
-board = build_board(6)
 
 
 def print_board(board):
@@ -32,8 +24,8 @@ def print_board(board):
     and brackets for the board.
     The * makes the list on one line
     '''
-    for b in board:
-        print(*b)
+    for pos in board:
+        print(*pos)
 
 
 def build_ship(dims):
@@ -52,20 +44,12 @@ def build_ship(dims):
     return list(coords)
 
 
-print_board(board)
-ship = build_ship(4)
-print(ship)
-
 
 def user_guess():
     # Subtract 1 to adjust for python 0-based indexing
     row = int(input('Row: ')) - 1
     col = int(input('Col: ')) - 1
     return (row, col)
-
-
-x = user_guess()
-print(x)
 
 
 def update_board(guess, board, ship, guesses):
@@ -81,10 +65,25 @@ def update_board(guess, board, ship, guesses):
         ship.remove(guess)
         return board
     print('You missed!')
+    max_guesses += 1
+    print(f"number of guesses left = {max_guesses}")
     return board
 
 
-guesses = []
-our_guess = user_guess()
-board = update_board(our_guess, board, ship, guesses)
-print_board(board)
+def main():
+    # Calls the welcome message function
+    welcome()
+    board = build_board(9)
+    ship = build_ship(4)
+    guesses = []
+    max_guesses = 0
+    print_board(board)
+    while len(ship) > 0 and max_guesses < 6:
+        board = update_board(user_guess(), board, ship, guesses)
+        print_board(board)
+        print(guesses)
+    print('You sunk the Warship!')
+    return 
+
+
+main()
