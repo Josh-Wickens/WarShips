@@ -1,8 +1,6 @@
 # Import random so that the random function can be used
 import random
 
-# Intro to WarShips and enter players username
-
 
 def welcome():
     # Prints welcome message, input for user to enter a username for the game
@@ -19,11 +17,9 @@ def build_board(dims):
 
 
 def print_board(board):
-    '''
-    This function will get rid of the commas, quotations
-    and brackets for the board.
-    The * makes the list on one line
-    '''
+    # This function will get rid of the commas, quotations
+    # and brackets for the board.
+    # The * makes the list on one line
     for pos in board:
         print(*pos)
 
@@ -47,12 +43,12 @@ def build_ship(dims):
 
 def user_guess():
     # Subtract 1 to adjust for python 0-based indexing
-    row = int(input('Row: ')) - 1
+    row = int(input('\nRow: ')) - 1
     col = int(input('Col: ')) - 1
     return (row, col)
 
 
-def update_board(guess, board, ship, guesses):
+def update_board(guess, board, ship, guesses, incorrect):
     if guess in guesses:
         print('You have already guessed that coordinate. Try a dfferent one')
         return board
@@ -64,9 +60,10 @@ def update_board(guess, board, ship, guesses):
         # Remove this value from ship coordinates to prevent mutiple hits on same ship cooridnate
         ship.remove(guess)
         return board
-    print('You missed!')
-    max_guesses += 1
-    print(f"number of guesses left = {max_guesses}")
+    elif guess not in ship:
+        print('You missed!')
+        incorrect.append(guess)
+        print(incorrect)
     return board
 
 
@@ -74,16 +71,16 @@ def main():
     # Calls the welcome message function
     welcome()
     board = build_board(9)
-    ship = build_ship(4)
+    ship = build_ship(6)
     guesses = []
-    max_guesses = 0
+    incorrect = []
     print_board(board)
-    while len(ship) > 0 and max_guesses < 6:
-        board = update_board(user_guess(), board, ship, guesses)
+    while len(ship) > 0 and len(incorrect) < 6:
+        board = update_board(user_guess(), board, ship, guesses, incorrect)
         print_board(board)
         print(guesses)
     print('You sunk the Warship!')
-    return 
+    return
 
 
 main()
