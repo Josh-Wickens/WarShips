@@ -56,22 +56,29 @@ def build_ship(dims):
 
 
 def user_guess():
-    """
-    provides an input for user to select guess.
-    Will only allow an integer for an input
-    and only 1 character long
-    """
-    try:
-        row = int(input('\nROW: '))
-        col = int(input('COL: '))
-        if row or col <= 6:
-            return (row, col)
-        else:
-            return None
-            raise ValueError
-    except ValueError:
+    row = None
+    col = None
+
+    while True:
         print("Please choose a number between 0-6")
-        user_guess()
+        row = input("\nRow: ")
+
+        if not row.isdigit() or int(row) >= 6:
+            continue
+        else:
+            row = int(row)
+            break
+
+    while True:
+        print("Please choose a number between 0-6")
+        col = input("\nCol: ")
+
+        if not col.isdigit() or int(col) >= 6:
+            continue
+        else:
+            col = int(col)
+            break
+    return (row, col)
 
 
 def update_board(guess, board, ship1, ship2, guesses, incorrect):
