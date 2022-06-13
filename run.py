@@ -3,14 +3,18 @@
 import random
 
 
-def welcome():
+def welcome(incorrect):
     """ Prints welcome message &
     input for user to enter a username for the game
     """
     print("\nWelcome to Warships!")
     print("\nPlease tell me your name")
     print("\nBefore we get started, I need to know your name")
+    print("\nSpeak friend and enter ;) ")
     username = input("\ninsert name: ")
+    if username == "MELON":
+        incorrect = 100
+        print("\nYou have entered cheat mode! You will have unlimited shots to take down the warships!")
     print(f"\nWelcome to WarShips {username}!\n")
     print("\nSelect a row coordinate from 0-6 and column coordinate from 0-6")
     print("\nif you hit a boat. It will be marked with an X.")
@@ -18,6 +22,7 @@ def welcome():
     print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
     print("\nif you miss 5 times the game is over and you lose.")
     print("\nIf you sink both boats. Then you WIN!\n")
+    return incorrect
 
 
 def build_board(dims):
@@ -52,15 +57,21 @@ def build_ship(dims):
         row = random.randint(0, dims - len_ship)
         row_ship = list(range(row, row + len_ship))
         coords = tuple(zip(row_ship, col_ship))
+
     return list(coords)
 
 
 def user_guess():
+    """
+    An input for user to guess a row and column.
+    If the guess is not within 0-5 it will make the user
+    guess again until a valid number is chosen.
+    """
     row = None
     col = None
 
     while True:
-        print("Please choose a number between 0-6")
+        print("\nPlease choose a number between 0-5")
         row = input("\nRow: ")
 
         if not row.isdigit() or int(row) >= 6:
@@ -70,7 +81,7 @@ def user_guess():
             break
 
     while True:
-        print("Please choose a number between 0-6")
+        print("Please choose a number between 0-5")
         col = input("\nCol: ")
 
         if not col.isdigit() or int(col) >= 6:
@@ -91,6 +102,9 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
         print('You have already guessed that coordinate. Try a dfferent one')
         return board
     guesses.append(guess)
+    if guess in ship1 and guess in ship2:
+        print("\nWow! Two birds with 1 stone! You hit 2 ships with 1 bullet!")
+        print("Great Shot!!")
     if guess in ship1:
         print('\nGood Hit!\n')
         # Update board with 'X' if hit
@@ -107,6 +121,7 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
         # mutiple hits on same ship cooridnate
         ship2.remove(guess)
         return board
+
     if guess not in ship1 or ship2:
         board[guess[0]][guess[1]] = '#'
         print('\nYou missed! Please try again!')
@@ -121,20 +136,25 @@ def main():
     depending on where the game is up to.
     also provides the end to the game pending on guesses left or ships left
     """
-    welcome()
+    guesses = []
+    incorrect = []
+    welcome(incorrect)
     board = build_board(6)
     ship1 = build_ship(4)
     ship2 = build_ship(4)
-    guesses = []
-    incorrect = []
     print_board(board)
+    print(ship1, ship2)
     while len(ship1 + ship2) > 0 and len(incorrect) < 6:
-        board = update_board(user_guess(), board, ship1, ship2, guesses, incorrect)
+        board = update_board(
+            user_guess(), board, ship1, ship2, guesses,
+            incorrect)
         print_board(board)
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
+        if len(ship1) == 0 or len(ship2) == 0:
+            print("\nYOU SANK A BATTLESHIP!")
     if len(ship1 + ship2) == 0:
-        print('You sunk the Warship!')
+        print('YOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
     else:
         print("\n you have run out of guesses! You Lose!")
     return
