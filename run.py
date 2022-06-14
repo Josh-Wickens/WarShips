@@ -145,7 +145,7 @@ def try_again():
     """
     print("\nWould you like to play again and increase your score?")
     print("\ntype y for yes or n for no")
-    again = input("\nY or N?: ")
+    again = input("\nY or N?: \n")
     again = again.upper()
     if again == "N":
         print("\nThank you for playing!")
@@ -185,8 +185,6 @@ def main():
         if len(ship2) == 0 and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
             all_alive = False
-        else:
-            pass
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
         global username
