@@ -182,17 +182,19 @@ def main():
             pass
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
-        player_score += 1
-        print("\nThe score is:")
-        print(f"PLAYER = {player_score}")
-        print(f"COMPUTER = {comp_score}\n")
+        global comp_score
+        global player_score
+        player_score = player_score + 1
+        print("\nThe score is:\n")
+        print(f"PLAYER = {str(player_score)}")
+        print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     else:
         print("\n you have run out of guesses! You Lose!")
-        comp_score += 1
+        comp_score = comp_score + 1
         print("\nThe score is:")
-        print(f"PLAYER = {player_score}")
-        print(f"COMPUTER = {comp_score}\n")
+        print(f"PLAYER = {str(player_score)}")
+        print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     return
 
