@@ -2,8 +2,9 @@
 # Import random so that the random function can be used
 import random
 
+score = 0
 
-def welcome(incorrect):
+def welcome():
     """ Prints welcome message &
     input for user to enter a username for the game
     """
@@ -12,17 +13,13 @@ def welcome(incorrect):
     print("\nBefore we get started, I need to know your name")
     print("\nSpeak friend and enter ;) ")
     username = input("\ninsert name: ")
-    if username == "MELON":
-        incorrect = 100
-        print("\nYou have entered cheat mode! You will have unlimited shots to take down the warships!")
     print(f"\nWelcome to WarShips {username}!\n")
-    print("\nSelect a row coordinate from 0-6 and column coordinate from 0-6")
+    print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
     print("\nif you hit a boat. It will be marked with an X.")
     print("\nIf you miss it will be marked with #")
     print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
     print("\nif you miss 5 times the game is over and you lose.")
     print("\nIf you sink both boats. Then you WIN!\n")
-    return incorrect
 
 
 def build_board(dims):
@@ -130,6 +127,27 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
     return board
 
 
+def try_again(guesses, incorrect, ship1, ship2, username):
+    print("Would you like to play again and increase your score?")
+    print("type y for yes or n for no")
+    again = input("\nY or N?")
+    again = again.upper()
+    if again != "Y" or "N":
+        print("Error please type y for yes or n for no")
+        try_again()
+    elif again "Y":
+        del (guesses)
+        del (incorrect)
+        del (ship1)
+        del (ship2)
+        main()
+    else:
+        print(f"\nThank you for playing {username}!")
+        print("\nHope to see you again!!")
+            
+
+
+
 def main():
     """
     the main function for the game. This will call upon functions
@@ -138,7 +156,7 @@ def main():
     """
     guesses = []
     incorrect = []
-    welcome(incorrect)
+    welcome()
     board = build_board(6)
     ship1 = build_ship(4)
     ship2 = build_ship(4)
