@@ -4,6 +4,7 @@ import random
 
 score = 0
 
+
 def welcome():
     """ Prints welcome message &
     input for user to enter a username for the game
@@ -11,7 +12,6 @@ def welcome():
     print("\nWelcome to Warships!")
     print("\nPlease tell me your name")
     print("\nBefore we get started, I need to know your name")
-    print("\nSpeak friend and enter ;) ")
     username = input("\ninsert name: ")
     print(f"\nWelcome to WarShips {username}!\n")
     print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
@@ -102,6 +102,10 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
     if guess in ship1 and guess in ship2:
         print("\nWow! Two birds with 1 stone! You hit 2 ships with 1 bullet!")
         print("Great Shot!!")
+        board[guess[0]][guess[1]] = 'X'
+        ship1.remove(guess)
+        ship2.remove(guess)
+        return board
     if guess in ship1:
         print('\nGood Hit!\n')
         # Update board with 'X' if hit
@@ -127,25 +131,25 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
     return board
 
 
-def try_again(guesses, incorrect, ship1, ship2, username):
-    print("Would you like to play again and increase your score?")
-    print("type y for yes or n for no")
-    again = input("\nY or N?")
+def try_again():
+    """
+    Try again function will give the user the option to play the game again.
+    If user inputs Y then the main function will run again.
+    If user selects N, then the progamme will finish.
+    """
+    print("znWould you like to play again and increase your score?")
+    print("zntype y for yes or n for no")
+    again = input("\nY or N?: ")
     again = again.upper()
-    if again != "Y" or "N":
-        print("Error please type y for yes or n for no")
-        try_again()
-    elif again == "Y":
-        del (guesses)
-        del (incorrect)
-        del (ship1)
-        del (ship2)
+    if again == "N":
+        print("\nThank you for playing!")
+        print("\nHope to see you again!!")
+        return
+    if again == "Y":
         main()
     else:
-        print(f"\nThank you for playing {username}!")
-        print("\nHope to see you again!!")
-            
-
+        print("\nError please type y for yes or n for no")
+        try_again()
 
 
 def main():
@@ -154,9 +158,9 @@ def main():
     depending on where the game is up to.
     also provides the end to the game pending on guesses left or ships left
     """
+    welcome()
     guesses = []
     incorrect = []
-    welcome()
     all_alive = True
     board = build_board(6)
     ship1 = build_ship(4)
@@ -177,8 +181,10 @@ def main():
             pass
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
+        try_again()
     else:
         print("\n you have run out of guesses! You Lose!")
+        try_again()
     return
 
 
