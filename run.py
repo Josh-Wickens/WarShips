@@ -2,7 +2,8 @@
 # Import random so that the random function can be used
 import random
 
-score = 0
+player_score = 0
+comp_score = 0
 
 
 def welcome():
@@ -137,8 +138,8 @@ def try_again():
     If user inputs Y then the main function will run again.
     If user selects N, then the progamme will finish.
     """
-    print("znWould you like to play again and increase your score?")
-    print("zntype y for yes or n for no")
+    print("\nWould you like to play again and increase your score?")
+    print("\ntype y for yes or n for no")
     again = input("\nY or N?: ")
     again = again.upper()
     if again == "N":
@@ -181,9 +182,17 @@ def main():
             pass
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
+        player_score += 1
+        print("\nThe score is:")
+        print(f"PLAYER = {player_score}")
+        print(f"COMPUTER = {comp_score}\n")
         try_again()
     else:
         print("\n you have run out of guesses! You Lose!")
+        comp_score += 1
+        print("\nThe score is:")
+        print(f"PLAYER = {player_score}")
+        print(f"COMPUTER = {comp_score}\n")
         try_again()
     return
 
