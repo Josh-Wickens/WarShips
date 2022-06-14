@@ -4,6 +4,7 @@ import random
 
 player_score = 0
 comp_score = 0
+username = ""
 
 
 def welcome():
@@ -13,6 +14,7 @@ def welcome():
     print("\nWelcome to Warships!")
     print("\nPlease tell me your name")
     print("\nBefore we get started, I need to know your name")
+    global username
     username = input("\ninsert name: ")
     print(f"\nWelcome to WarShips {username}!\n")
     print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
@@ -21,6 +23,9 @@ def welcome():
     print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
     print("\nif you miss 5 times the game is over and you lose.")
     print("\nIf you sink both boats. Then you WIN!\n")
+
+
+welcome()
 
 
 def build_board(dims):
@@ -159,7 +164,6 @@ def main():
     depending on where the game is up to.
     also provides the end to the game pending on guesses left or ships left
     """
-    welcome()
     guesses = []
     incorrect = []
     all_alive = True
@@ -175,25 +179,29 @@ def main():
         print_board(board)
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
-        if len(ship1) == 0 or len(ship2) == 0 and all_alive is True:
+        if len(ship1) == 0 and all_alive is True:
+            print("\nYOU SANK A BATTLESHIP!")
+            all_alive = False
+        if len(ship2) == 0 and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
             all_alive = False
         else:
             pass
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
+        global username
         global comp_score
         global player_score
         player_score = player_score + 1
         print("\nThe score is:\n")
-        print(f"PLAYER = {str(player_score)}")
+        print(f"{username} = {str(player_score)}")
         print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     else:
         print("\n you have run out of guesses! You Lose!")
         comp_score = comp_score + 1
         print("\nThe score is:")
-        print(f"PLAYER = {str(player_score)}")
+        print(f"{username} = {str(player_score)}")
         print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     return
