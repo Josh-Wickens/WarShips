@@ -135,7 +135,7 @@ def try_again(guesses, incorrect, ship1, ship2, username):
     if again != "Y" or "N":
         print("Error please type y for yes or n for no")
         try_again()
-    elif again "Y":
+    elif again == "Y":
         del (guesses)
         del (incorrect)
         del (ship1)
@@ -157,6 +157,7 @@ def main():
     guesses = []
     incorrect = []
     welcome()
+    all_alive = True
     board = build_board(6)
     ship1 = build_ship(4)
     ship2 = build_ship(4)
@@ -169,10 +170,13 @@ def main():
         print_board(board)
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
-        if len(ship1) == 0 or len(ship2) == 0:
+        if len(ship1) == 0 or len(ship2) == 0 and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
+            all_alive = False
+        else:
+            pass
     if len(ship1 + ship2) == 0:
-        print('YOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
+        print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
     else:
         print("\n you have run out of guesses! You Lose!")
     return
