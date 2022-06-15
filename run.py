@@ -77,7 +77,7 @@ def user_guess():
 
     while True:
         print("\nPlease choose a number between 0-5")
-        row = input("\nRow: ")
+        row = input("\nRow: \n")
 
         if not row.isdigit() or int(row) >= 6:
             continue
@@ -87,7 +87,7 @@ def user_guess():
 
     while True:
         print("Please choose a number between 0-5")
-        col = input("\nCol: ")
+        col = input("\nCol: \n")
 
         if not col.isdigit() or int(col) >= 6:
             continue
@@ -191,7 +191,7 @@ def main():
             print("\nYOU SANK A BATTLESHIP!")
             all_alive = False
         while hint_left > 0 and hint is False:
-            hint = input("\nWould you like a hint? Y for Yes N for No: ")
+            hint = input("\nWould you like a hint? Y for Yes N for No: \n")
             hint = hint.upper()
             if hint == "Y":
                 if hint_left >= 1:
