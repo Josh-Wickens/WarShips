@@ -5,10 +5,12 @@ import random
 player_score = 0
 comp_score = 0
 username = ""
+hint_left = 3
 
 
 def welcome():
-    """ Prints welcome message &
+    """
+    Prints welcome message &
     input for user to enter a username for the game
     """
     print("\nWelcome to Warships!")
@@ -167,24 +169,43 @@ def main():
     guesses = []
     incorrect = []
     all_alive = True
+    hint = False
     board = build_board(6)
     ship1 = build_ship(4)
     ship2 = build_ship(4)
     print_board(board)
     print(ship1, ship2)
     while len(ship1 + ship2) > 0 and len(incorrect) < 6:
+        hint = False
         board = update_board(
             user_guess(), board, ship1, ship2, guesses,
             incorrect)
         print_board(board)
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
+        global hint_left
         if len(ship1) == 0 and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
             all_alive = False
         if len(ship2) == 0 and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
             all_alive = False
+        while hint_left > 0 and hint is False:
+            hint = input("\nWould you like a hint? Y for Yes N for No: ")
+            hint = hint.upper()
+            if hint == "Y":
+                if hint_left >= 1:
+                    row_hint = [x[0] for x in ship1]
+                    print(f"\nThere is a boat in column {row_hint[0]}!")
+                    hint_left = hint_left - 1
+                    print(f"\nYou have {hint_left} hints left")
+                    hint = True
+                    if hint_left == 0:
+                        print("\nNo more hints left! Your on your own!")
+                    if len(ship1) == 0:
+                        print("Only 1 ship left! No more hints! Your on your own!")
+            else:
+                break
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
         global username
