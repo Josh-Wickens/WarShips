@@ -204,8 +204,12 @@ def main():
                         print("\nNo more hints left! Your on your own!")
                     if len(ship1) == 0:
                         print("Only 1 ship left! No more hints! Your on your own!")
+            if hint is not "Y" or "N":
+                print("\nError! Please enter either Y or N\n")
             else:
                 break
+                #hint = input("\nWould you like a hint? Y for Yes N for No: \n")
+                #hint = hint.upper()
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
         global username
