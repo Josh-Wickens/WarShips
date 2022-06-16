@@ -154,6 +154,8 @@ def try_again():
         print("\nHope to see you again!!")
         return
     if again == "Y":
+        global hint_left
+        hint_left = 3
         main()
     else:
         print("\nError please type y for yes or n for no")
@@ -184,32 +186,29 @@ def main():
         print("\nYou have guessed the following coordinates so far:")
         print(*guesses)
         global hint_left
-        if len(ship1) == 0 and all_alive is True:
+        if (len(ship1) == 0 or len(ship2) == 0) and all_alive is True:
             print("\nYOU SANK A BATTLESHIP!")
+            print("\nOnly 1 ship left! No more hints! Your on your own!")
+            hint_left = 0
             all_alive = False
-        if len(ship2) == 0 and all_alive is True:
-            print("\nYOU SANK A BATTLESHIP!")
-            all_alive = False
-        while hint_left > 0 and hint is False:
+        while hint_left > 0:
             hint = input("\nWould you like a hint? Y for Yes N for No: \n")
             hint = hint.upper()
             if hint == "Y":
                 if hint_left >= 1:
                     row_hint = [x[0] for x in ship1]
-                    print(f"\nThere is a boat in column {row_hint[0]}!")
+                    print(f"\nThere is a boat in row {row_hint[0]}!")
                     hint_left = hint_left - 1
                     print(f"\nYou have {hint_left} hints left")
-                    hint = True
-                    if hint_left == 0:
-                        print("\nNo more hints left! Your on your own!")
-                    if len(ship1) == 0:
-                        print("Only 1 ship left! No more hints! Your on your own!")
-            if hint is not "Y" or "N":
-                print("\nError! Please enter either Y or N\n")
-            else:
+                if hint_left == 0:
+                    print("\nNo more hints left! Your on your own!")  
                 break
-                #hint = input("\nWould you like a hint? Y for Yes N for No: \n")
-                #hint = hint.upper()
+            elif hint == "N":
+                break
+            else:
+                print("\nError! Please enter either Y or N\n")
+                continue
+            
     if len(ship1 + ship2) == 0:
         print('\nYOU SUNK THE WARSHIPS! CONGRATULATIONS YOU WIN!')
         global username
