@@ -14,16 +14,16 @@ def welcome():
     input for user to enter a username for the game
     """
     print("\nWelcome to Warships!")
-    print("\nPlease tell me your name")
     print("\nBefore we get started, I need to know your name")
+    print("\nAfter any input, press enter to submit")
     global username
     username = input("\ninsert name: \n")
     print(f"\nWelcome to WarShips {username}!")
     print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
-    print("\nif you hit a boat. It will be marked with an X.")
+    print("\nIf you hit a boat. It will be marked with an X.")
     print("\nIf you miss it will be marked with M")
     print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
-    print("\nif you miss 5 times the game is over and you lose.")
+    print("\nIf you miss 5 times the game is over and you lose.")
     print("\nIf you sink both boats. Then you WIN!\n")
 
 
@@ -115,7 +115,7 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
     """
     if guess in guesses:
         # If the coordinates have already been guessed
-        print('You have already guessed that coordinate. Try a dfferent one')
+        print('\nYou have already guessed that coordinate. Try a dfferent one')
         return board
     guesses.append(guess)
     if guess in ship1 and guess in ship2:
@@ -155,7 +155,7 @@ def try_again():
     If user selects N, then the progamme will finish.
     """
     print("\nWould you like to play again and increase your score?")
-    print("\ntype y for yes or n for no")
+    print("\nType y for yes or n for no")
     again = input("\nY or N?: \n")
     again = again.upper()
     if again == "N":
@@ -241,15 +241,15 @@ def main():
         global player_score
         player_score = player_score + 1
         print("\nThe score is:\n")
-        print(f"{username} = {str(player_score)}")
+        print(f"\n{username} = {str(player_score)}")
         print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     else:
         # Code for is player loses. Increment computer score and offer to play again
-        print("\n you have run out of guesses! You Lose!")
+        print("\n You have run out of guesses! You Lose!")
         comp_score = comp_score + 1
         print("\nThe score is:")
-        print(f"{username} = {str(player_score)}")
+        print(f"\n{username} = {str(player_score)}")
         print(f"COMPUTER = {str(comp_score)}\n")
         try_again()
     return
