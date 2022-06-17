@@ -92,6 +92,7 @@ The same was done with the try again input. Nothing other than Y or N could be u
 - All inputs were testing using lowercase characters, uppercase characters, digits and special characters to make sure inputs rejected them if they were not valid for that input.
 - Tested the game to make sure that if the player won or the computer won, that the score would be incremented for the correct winner. 
 - Tested to see if the user decided to play again, then the scores would keep incrementing and not reset to the original 0 score.
+- Tested to see if user left username blank that a username would = player so that scoreboard would be more user friendly at the end rather than blank.
 
 ![image of PEP8 testing coming back all right with no errors](assets/images/pep8_check.png)
 
@@ -152,8 +153,3 @@ I used the following youtube tutorials and guides for help with the game logic a
 - [bigmonty12 - python for beginners: Battleship](https://bigmonty12.github.io/battleship)
 
 I would also like to give credit to the slack community and the codeinstitute tutor support and my Tutor Jack for the help they have given me over this project.
-
-
-
-
-
