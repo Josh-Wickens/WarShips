@@ -69,7 +69,28 @@ ___
 
 ### Validation Testing
 
-Testing has been done to make sure that only valid inputs could be put into certain inputs. For row and col, validation has been done so that the user can only enter a digit between 0-5. If the user enters any number outside of this or any letter or special character, the game will inform the user of the error and ask them to select again.
+Testing has been done to make sure that only valid inputs could be put into certain inputs. For row and col, validation has been done so that the user can only enter a digit between 0-5. If the user enters any number outside of this or any letter or special character, the game will inform the user of the error and ask them to select again. Testing was done with letters incorrect numbers and special characters to make sure that the input would only take the specific digits.
+
+![image of incorrect data being put into inputs](assets/images/input_error.png)
+
+Testing was done on the hint input too. The hint input will only take a Y or N as an input. The upper function was used on the input to make sure that it didn't matter if the user used a small y or a large Y as this would be confusing if it was accepted because it wasn't capital. If anything other than Y or N is input, then an error message is printed for the user and asks them to try again using Y or N.
+
+![image of incorrect data used for the hint input](assets/images/hint_input.png)
+
+The same was done with the try again input. Nothing other than Y or N could be used. This was tested using Heroku and Github to make sure that only Y and N could be used in the input. 
+
+![image of try again input error](assets/images/try_again_testing.png)
+
+### Code Testing
+
+- I ran my code through the PEP8 linter and that passed with no errors.
+- I tested my code using the Github terminal and using the Heroku terminal. No errors. 
+- All input validations work in the terminal.
+- Testing was done to make sure that if 2 ships were in the same coordinates that both were removed as a print statement would inform the user if there was 2 ships.
+- All inputs were testing using lowercase characters, uppercase characters, digits and special characters to make sure inputs rejected them if they were not valid for that input.
+
+
+
 
 
 
