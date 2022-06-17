@@ -131,7 +131,7 @@ ___
 ## **Deployment** ##
 ___
 This project was deployed using Heroku.
-- Go to [Heroku.com](https//www.heroku.com)
+- Go to [Heroku.com](https://www.heroku.com)
 - Registered for an account.
 - Fork or clone this repository.
 - Create a new Heroku app.
