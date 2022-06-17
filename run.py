@@ -19,6 +19,8 @@ def welcome():
     print("\nAfter any input, press enter to submit")
     global username
     username = input("\ninsert name: \n")
+    if username == "":
+        username = "Player"
     print(f"\nWelcome to WarShips {username}!")
     print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
     print("\nIf you hit a boat. It will be marked with an X.")

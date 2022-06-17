@@ -69,7 +69,7 @@ ___
 ## **Testing** ##
 ___
 
-### Validation Testing
+### Validation Testing 
 
 Testing has been done to make sure that only valid inputs could be put into certain inputs. For row and col, validation has been done so that the user can only enter a digit between 0-5. If the user enters any number outside of this or any letter or special character, the game will inform the user of the error and ask them to select again. Testing was done with letters incorrect numbers and special characters to make sure that the input would only take the specific digits.
 
@@ -90,6 +90,8 @@ The same was done with the try again input. Nothing other than Y or N could be u
 - All input validations work in the terminal.
 - Testing was done to make sure that if 2 ships were in the same coordinates that both were removed as a print statement would inform the user if there was 2 ships.
 - All inputs were testing using lowercase characters, uppercase characters, digits and special characters to make sure inputs rejected them if they were not valid for that input.
+- Tested the game to make sure that if the player won or the computer won, that the score would be incremented for the correct winner. 
+- Tested to see if the user decided to play again, then the scores would keep incrementing and not reset to the original 0 score.
 
 ![image of PEP8 testing coming back all right with no errors](assets/images/pep8_check.png)
 
@@ -136,7 +138,20 @@ When you create the app, you will need to add two buildpacks from the Settings t
 - then create a Config Var called PORT. Set this to 8000
 - Link the Heroku app to the repository
 - Click on Deploy
+___
 
+## **Frameworks, Libraries and Programs I Used** ##
+___
+
+- Random
+___
+## **Credits** ##
+
+I used the following youtube tutorials and guides for help with the game logic and building the board.
+- [Knowledge Mevans - Youtube Channel](https://www.youtube.com/watch?v=tF1WRCrd_HQ)
+- [bigmonty12 - python for beginners: Battleship](https://bigmonty12.github.io/battleship)
+
+I would also like to give credit to the slack community and the codeinstitute tutor support and my Tutor Jack for the help they have given me over this project.
 
 
 
