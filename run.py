@@ -217,7 +217,7 @@ def main():
                 # If user keys Y then the first coordinate for ship1 will print
                 if hint_left >= 1:
                     row_hint = [x[0] for x in ship1]
-                    print(f"\nThere is a boat in row {row_hint[0]}!")
+                    print(f"\nThere is part of a boat in row {row_hint[0]}!")
                     hint_left = hint_left - 1
                     print(f"\nYou have {hint_left} hints left")
                 if hint_left == 0:
