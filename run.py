@@ -24,7 +24,7 @@ def welcome():
     print(f"\nWelcome to WarShips {username}!")
     print("\nSelect a row coordinate from 0-5 and column coordinate from 0-5")
     print("\nIf you hit a boat. It will be marked with an X.")
-    print("\nIf you miss it will be marked with M")
+    print("If you miss it will be marked with M")
     print("\nThere are 2 boats to hit. They can be any length up to 4 spaces")
     print("\nIf you miss 6 times the game is over and you lose.")
     print("\nIf you sink both boats. Then you WIN!\n")

@@ -3,12 +3,12 @@ ___
 
 # [Click here to see deployed project](https://war-ships.herokuapp.com/) 
 
-WarShips is a single player of a game known as [Battleships](https://en.wikipedia.org/wiki/Battleship_(game)). The aim of the game is to sink the opponants battleships before they sink yours. WarShips is slightly different where you are not playing against an opponant who is attacking your ships. Instead you have a limited amount of wrong guesses before you loose. The game gives you the opportunity to try and get as high as scrore as possible. But if you don't manage to sink the ships before your guesses deplete, then the computer wins. 
+WarShips is a single player of a game known as [Battleships](https://en.wikipedia.org/wiki/Battleship_(game)). The aim of the game is to sink the opponants battleships before they sink yours. WarShips is slightly different where you are not playing against an opponant who is attacking your ships. Instead you have a limited amount of wrong guesses before you lose. The game gives you the opportunity to try and get as high as scrore as possible. But if you don't manage to sink the ships before your guesses deplete, then the computer wins. 
 ___
 ![image of running game of WarShips](assets/images/welcome.png)
 ___
 ## **How to play** ##
-The aim of the game is sink the computers battleships. The computer has 2 ships which will be of random length up to 4 coordinates. The user can make up to 5 incorrect guesses before the user looses. If the user sinks the 2 battleships within the incorrect guesses, then the user wins. A players correct guess will be marked on the game board (which is 6 rows of 0's by 6) by an X. Incorrect guesses will be marked with an M (for miss). The board will randomly generate 2 ships on the board each game, so every game will be different.  
+The aim of the game is sink the computers' battleships. The computer has 2 ships which will be of random length up to 4 coordinates. The user can make up to 5 incorrect guesses before the user loses. If the user sinks the 2 battleships within the incorrect guesses, then the user wins. A players correct guess will be marked on the game board (which is 6 rows of 0's by 6) by an X. Incorrect guesses will be marked with an M (for miss). The board will randomly generate 2 ships on the board each game, so every game will be different.  
 ___
 ___
 ## **Target Audience** ##
@@ -55,13 +55,13 @@ At the end of the game if the user manages to guess all the coordinates of both 
 
 - TRY AGAIN
 
-Once the user wins or looses, they will have the option to try again. If they input Y for yes, then the scores will keep as they are so that the user can increase their score. If they select N for no, then the game will terminate and scores will be erased.
+Once the user wins or loses, they will have the option to try again. If they input Y for yes, then the scores will keep as they are so that the user can increase their score. If they select N for no, then the game will terminate and scores will be erased.
 
 ___
 ## **Future Features** ##
 ___
 - The option for the user to have their own board with ships on and the computer to guess ships on the users board.
-- Giving the user to pick the size of the board and the amount of ships.
+- Giving the user the option to pick the size of the board and the amount of ships.
 - The option to have timer to make the game more tense as the user will have to rush their guesses.
 - The option to set difficulty, where easy would be a small sized board with 1 ship and hard being a large size board with multiple ships.
 
@@ -75,7 +75,7 @@ Testing has been done to make sure that only valid inputs could be put into cert
 
 ![image of incorrect data being put into inputs](assets/images/input_error.png)
 
-Testing was done on the hint input too. The hint input will only take a Y or N as an input. The upper function was used on the input to make sure that it didn't matter if the user used a small y or a large Y as this would be confusing if it was accepted because it wasn't capital. If anything other than Y or N is input, then an error message is printed for the user and asks them to try again using Y or N.
+Testing was done on the hint input too. The hint input will only take a Y or N as an input. The upper function was used on the input to make sure that it didn't matter if the user used a lowercase y or uppercase Y as this would be confusing if it was accepted because it wasn't capital. If anything other than Y or N is input, then an error message is printed for the user and asks them to try again using Y or N.
 
 ![image of incorrect data used for the hint input](assets/images/hint_input.png)
 
@@ -132,23 +132,26 @@ ___
 ___
 This project was deployed using Heroku.
 - Registered for an account.
-- Fork or clone this repository
-- Create a new Heroku app
+- Fork or clone this repository.
+- Create a new Heroku app.
+
 When you create the app, you will need to add two buildpacks from the Settings tab. The ordering is as follows:
-- Python then NodeJS 
-- then create a Config Var called PORT. Set this to 8000
-- Link the Heroku app to the repository
-- Click on Deploy
+- Python then NodeJS. 
+- Then create a Config Var called PORT. Set this to 8000.
+- Link the Heroku app to the repository.
+- Click on Deploy.
 ___
 
 ## **Frameworks, Libraries and Programs I Used** ##
 ___
 
 - Random
+- Heroku
+- Github
 ___
 ## **Credits** ##
 
-I used the following youtube tutorials and guides for help with the game logic and building the board.
+I used the following youtube tutorials and guides for help with the game logic and building the board:
 - [Knowledge Mevans - Youtube Channel](https://www.youtube.com/watch?v=tF1WRCrd_HQ)
 - [bigmonty12 - python for beginners: Battleship](https://bigmonty12.github.io/battleship)
 
