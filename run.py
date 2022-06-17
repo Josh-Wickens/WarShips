@@ -86,20 +86,22 @@ def user_guess():
     col = None
 
     while True:
-        print("\nPlease choose a number between 0-5")
+        print("\nPlease enter a number between 0-5")
         row = input("\nRow: \n")
 
         if not row.isdigit() or int(row) >= 6:
+            print("\nYou did not enter a number between 0-5")
             continue
         else:
             row = int(row)
             break
 
     while True:
-        print("\nPlease choose a number between 0-5")
+        print("\nPlease enter a number between 0-5")
         col = input("\nCol: \n")
 
         if not col.isdigit() or int(col) >= 6:
+            print("\nYou did not enter a number between 0-5")
             continue
         else:
             col = int(col)
