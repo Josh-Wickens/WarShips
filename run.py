@@ -121,7 +121,7 @@ def update_board(guess, board, ship1, ship2, guesses, incorrect):
     if guess in ship1 and guess in ship2:
         # If the coordinates are in both ship 1 and ship 2
         print("\nWow! Two birds with 1 stone! You hit 2 ships with 1 bullet!")
-        print("Great Shot!!")
+        print("\nGreat Shot!!")
         board[guess[0]][guess[1]] = 'X'
         """
         Remove this value from ship coordinates to prevent
@@ -185,7 +185,6 @@ def main():
     ship1 = build_ship(4)
     ship2 = build_ship(4)
     print_board(board)
-    print(ship1, ship2)
     while len(ship1 + ship2) > 0 and len(incorrect) < 6:
         """
         This while loop will run whilst the length of ship is more than 0
