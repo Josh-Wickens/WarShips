@@ -125,33 +125,20 @@ I fixed this bug as I realised I needed to use call the variable using the Globa
 
 ___
 
+## **Deployment** ##
+___
+This project was deployed using Heroku.
+- Registered for an account.
+- Fork or clone this repository
+- Create a new Heroku app
+When you create the app, you will need to add two buildpacks from the Settings tab. The ordering is as follows:
+- Python then NodeJS 
+- then create a Config Var called PORT. Set this to 8000
+- Link the Heroku app to the repository
+- Click on Deploy
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
 
