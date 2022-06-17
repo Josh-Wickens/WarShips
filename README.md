@@ -1,6 +1,8 @@
 ___
 # **WarShips**
 
+# [Click here to see deployed project](https://war-ships.herokuapp.com/) 
+
 WarShips is a single player of a game known as [Battleships](https://en.wikipedia.org/wiki/Battleship_(game)). The aim of the game is to sink the opponants battleships before they sink yours. WarShips is slightly different where you are not playing against an opponant who is attacking your ships. Instead you have a limited amount of wrong guesses before you loose. The game gives you the opportunity to try and get as high as scrore as possible. But if you don't manage to sink the ships before your guesses deplete, then the computer wins. 
 ___
 ![image of running game of WarShips](assets/images/welcome.png)
@@ -89,11 +91,39 @@ The same was done with the try again input. Nothing other than Y or N could be u
 - Testing was done to make sure that if 2 ships were in the same coordinates that both were removed as a print statement would inform the user if there was 2 ships.
 - All inputs were testing using lowercase characters, uppercase characters, digits and special characters to make sure inputs rejected them if they were not valid for that input.
 
+![image of PEP8 testing coming back all right with no errors](assets/images/pep8_check.png)
 
 
+___
+## **Bugs** ##
+___
 
+- A bug where the code wouldn't reject the input for row and col if it was larger than 5 or not a digit. 
+![image of bug for row and col input](assets/images/row_col_bug.png)
+This was fixed by using the following code:
+```
+if not row.isdigit() or int(row) >= 6:
+            print("\nYou did not enter a number between 0-5")
+            continue
+        else:
+            row = int(row)
+            break
+```
+- I also fixed a bug when the user sank a ship, every turn the "you have sunk a ship" print would be printed. The original code was:
+![image of bug for repeating ship sank code](assets/images/Sank_Ship_Error.png)
+The bug was occuring because the code I was using was only reading that if ship1 length = 0 then print the statement. I fixed this by using the following code:
+![image of ship sank bug code fixed](assets/images/Sank_Ship_Error_Fixed.png)
+I then simplified this code so that it could be done in one statement rather than 2.
+```
+if (len(ship1) == 0 or len(ship2) == 0) and all_alive is True:
+```
+- I also had a bug where I couldn't figure out why I couldn't increment the scores for the player or computer.
+![image of scores bug](assets/images/global_bug.png)
+I fixed this bug as I realised I needed to use call the variable using the Global key word. Once I called the variable using the global key word, the scores would increase with a win and loss.
 
+- **There are no known bugs remaining**
 
+___
 
 
 
